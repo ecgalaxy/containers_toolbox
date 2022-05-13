@@ -1,0 +1,9 @@
+---
+- name: Check helm version
+  ansible.builtin.command: helm version
+  changed_when: false
+  register: output
+- name: Assert that helm is installed
+  ansible.builtin.assert:
+    that:
+    - "'v{{ helm_version }}' in output.stdout"

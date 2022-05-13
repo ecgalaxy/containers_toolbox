@@ -1,0 +1,8 @@
+variables:
+  ROLE: ${CI_PROJECT_NAME}
+  BRANCH: ${CI_COMMIT_REF_NAME}
+
+test:
+  trigger:
+    project: ecgalaxy/tooling
+    strategy: depend

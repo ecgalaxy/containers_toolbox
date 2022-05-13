@@ -1,0 +1,54 @@
+---
+
+- name: Ytt  | Set facts
+  ansible.builtin.set_fact:
+    ytt_download_url: "https://github.com/vmware-tanzu/carvel-ytt/releases/download/v{{ ytt_version }}/ytt-linux-amd64"
+    ytt_installation_subpath: "{{ ytt_installation_path }}/{{ ytt_version }}"
+
+- name: Ytt  | Check if ytt is already installed
+  ansible.builtin.stat:
+    path: "{{ ytt_installation_subpath }}"
+  register: ytt_already_installed
+
+- name: Ytt  | Install ytt
+  block:
+  - name: Ytt  | Create ytt installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ ytt_installation_subpath }}"
+    become: true
+
+  - name: Ytt  | Download ytt
+    ansible.builtin.get_url:
+      url: "{{ ytt_download_url }}"
+      checksum: "{{ ytt_checksum }}"
+      dest: /tmp
+      mode: "u=rwx,go=rx"
+    register: downloaded_file
+
+  - name: Ytt  | Install ytt
+    ansible.builtin.copy:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ ytt_installation_subpath }}"
+      remote_src: true
+      mode: 'u=rwx,go=rx'
+    register: ytt_bin_path
+
+  - name: Ytt  | Create ytt symlink
+    ansible.builtin.file:
+      src: "{{ ytt_bin_path.dest }}"
+      dest: /usr/local/bin/ytt
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: Ytt  | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+  when: not ytt_already_installed.stat.exists

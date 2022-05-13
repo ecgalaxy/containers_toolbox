@@ -1,0 +1,20 @@
+---
+- name: Verify
+  hosts: all
+  vars_files:
+    - ../../defaults/main.yml
+  tasks:
+    - name: verify dive
+      include: verify_dive.yml
+    - name: verify helm
+      include: verify_helm.yml
+    - name: verify k9s
+      include: verify_k9s.yml
+    - name: verify kapp
+      include: verify_kapp.yml
+    - name: verify kubectl
+      include: verify_kubectl.yml
+    - name: verify pack
+      include: verify_pack.yml
+    - name: verify ytt
+      include: verify_ytt.yml

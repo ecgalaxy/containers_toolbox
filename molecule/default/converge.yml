@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  roles:
+    - role: ecgalaxy.common_packages
+  tasks:
+    - name: Include containers_toolbox
+      ansible.builtin.include_role:
+        name: containers_toolbox
+  environment:
+    http_proxy: "{{ lookup('env', 'http_proxy') }}"
+    https_proxy: "{{ lookup('env', 'https_proxy') }}"
+    no_proxy: "{{ lookup('env', 'no_proxy') }}"

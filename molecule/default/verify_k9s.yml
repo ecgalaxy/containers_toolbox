@@ -1,0 +1,9 @@
+---
+- name: Check k9s version
+  ansible.builtin.command: k9s version
+  changed_when: false
+  register: output
+- name: Assert that k9s is installed
+  ansible.builtin.assert:
+    that:
+    - "'{{ k9s_version }}' in output.stdout"

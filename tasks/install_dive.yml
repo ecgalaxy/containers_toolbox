@@ -1,0 +1,57 @@
+---
+
+- name: Dive | Set facts
+  ansible.builtin.set_fact:
+    dive_download_url: "https://github.com/wagoodman/dive/releases/download/v{{ dive_version }}/dive_{{ dive_version }}_linux_amd64.tar.gz"
+    dive_installation_subpath: "{{ dive_installation_path }}/{{ dive_version }}"
+
+- name: Dive | Check if dive is already installed
+  ansible.builtin.stat:
+    path: "{{ dive_installation_subpath }}"
+  register: dive_already_installed
+
+- name: Dive | Install dive
+  block:
+  - name: Dive | Create dive installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ dive_installation_subpath }}"
+    become: true
+
+  - name: Dive | Download dive
+    ansible.builtin.get_url:
+      url: "{{ dive_download_url }}"
+      checksum: "{{ dive_checksum }}"
+      mode: 'u=rwx,go=rx'
+      dest: /tmp
+    register: downloaded_file
+
+  - name: Dive | Install dive
+    ansible.builtin.unarchive:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ dive_installation_subpath }}"
+      owner: "root"
+      group: "root"
+      mode: "u=rwx,go=rx"
+      remote_src: yes
+    become: true
+    register: dive_bin_path
+
+  - name: Dive | Create dive symlink
+    ansible.builtin.file:
+      src: "{{ dive_installation_subpath }}/dive"
+      dest: /usr/local/bin/dive
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: Dive | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+  when: not dive_already_installed.stat.exists

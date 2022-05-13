@@ -1,0 +1,67 @@
+---
+
+- name: Kubectl | Retrieve kubectl latest version
+  ansible.builtin.uri:
+    url: "{{ kubectl_version_url }}"
+    return_content: true
+  register: kubectl_version
+
+- name: Kubectl | Retrieve kubectl checksum
+  ansible.builtin.uri:
+    url: "https://dl.k8s.io/{{ kubectl_version.content }}/bin/linux/amd64/kubectl.sha256"
+    return_content: true
+  register: kubectl_checksum
+
+- name: Kubectl | Set facts
+  ansible.builtin.set_fact:
+    kubectl_download_url: "https://dl.k8s.io/release/{{ kubectl_version.content }}/bin/linux/amd64/kubectl"
+    kubectl_checksum_url: "sha256:{{ kubectl_checksum.content }}"
+    kubectl_installation_subpath: "{{ kubectl_installation_path }}/{{ kubectl_version.content }}"
+
+- name: Kubectl | Check if kubectl is already installed
+  ansible.builtin.stat:
+    path: "{{ kubectl_installation_subpath }}"
+  register: kubectl_already_installed
+
+- name: Kubectl | Install kubectl
+  block:
+  - name: Kubectl | Create kubectl installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ kubectl_installation_subpath }}"
+    become: true
+
+  - name: Kubectl | Download kubectl
+    ansible.builtin.get_url:
+      url: "{{ kubectl_download_url }}"
+      checksum: "{{ kubectl_checksum_url }}"
+      dest: /tmp
+      mode: "u=rwx,go=rx"
+    register: downloaded_file
+
+  - name: Kubectl | Install kubectl
+    ansible.builtin.copy:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ kubectl_installation_subpath }}"
+      remote_src: true
+      mode: 'u=rwx,go=rx'
+    register: kubectl_bin_path
+
+  - name: Kubectl | Create kubectl symlink
+    ansible.builtin.file:
+      src: "{{ kubectl_bin_path.dest }}"
+      dest: /usr/local/bin/kubectl
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: Kubectl | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+  when: not kubectl_already_installed.stat.exists

@@ -1,0 +1,57 @@
+---
+
+- name: Helm  | Set facts
+  ansible.builtin.set_fact:
+    helm_download_url: "https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+    helm_installation_subpath: "{{ helm_installation_path }}/{{ helm_version }}"
+
+- name: Helm  | Check if helm is already installed
+  ansible.builtin.stat:
+    path: "{{ helm_installation_subpath }}"
+  register: helm_already_installed
+
+- name: Helm  | Install helm
+  block:
+  - name: Helm  | Create helm installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ helm_installation_subpath }}"
+    become: true
+
+  - name: Helm  | Download helm
+    ansible.builtin.get_url:
+      url: "{{ helm_download_url }}"
+      checksum: "{{ helm_checksum }}"
+      mode: 'u=rwx,go=rx'
+      dest: /tmp
+    register: downloaded_file
+
+  - name: Helm  | Install helm
+    ansible.builtin.unarchive:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ helm_installation_subpath }}"
+      owner: "root"
+      group: "root"
+      mode: "u=rwx,go=rx"
+      remote_src: yes
+    become: true
+    register: helm_bin_path
+
+  - name: Helm  | Create helm symlink
+    ansible.builtin.file:
+      src: "{{ helm_installation_subpath }}/linux-amd64/helm"
+      dest: /usr/local/bin/helm
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: Helm  | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+  when: not helm_already_installed.stat.exists

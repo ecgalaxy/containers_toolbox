@@ -1,0 +1,9 @@
+---
+- name: Check pack version
+  ansible.builtin.command: pack --version
+  changed_when: false
+  register: output
+- name: Assert that pack is installed
+  ansible.builtin.assert:
+    that:
+    - "'{{ pack_version }}' in output.stdout"

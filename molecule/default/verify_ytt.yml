@@ -1,0 +1,9 @@
+---
+- name: Check ytt version
+  ansible.builtin.command: ytt --version
+  changed_when: false
+  register: output
+- name: Assert that ytt is installed
+  ansible.builtin.assert:
+    that:
+    - "'ytt version ' in output.stdout"

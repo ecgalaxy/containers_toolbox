@@ -1,0 +1,28 @@
+---
+
+# dive
+dive_checksum: "sha256:9541997876d4985de66d0fa5924dac72258a3094ef7d3f6ef5fa5dcf6f6a47ad"
+dive_installation_path: /opt/dive
+dive_version: 0.10.0
+# helm
+helm_checksum: "sha256:1484ffb0c7a608d8069470f48b88d729e88c41a1b6602f145231e8ea7b43b50a"
+helm_installation_path: /opt/helm
+helm_version: 3.9.0
+# k9s
+k9s_checksum: "sha256:d288aacc368ab6b243fc9e7ecd17b53fa34a813509c2dc3023171085db83cf9d"
+k9s_installation_path: /opt/k9s
+k9s_version: 0.25.18
+# kapp
+kapp_checksum: "sha256:2b1bd5e3a35ed63045be80a7cc8cbc054fe4e98c89c55f9006c8fec2243658a4"
+kapp_installation_path: /opt/kapp
+kapp_version: 0.47.0
+# kubectl
+kubectl_installation_path: /opt/kubectl
+kubectl_version_url: https://dl.k8s.io/release/stable.txt
+# pack
+pack_installation_path: /opt/pack
+pack_version: 0.26.0
+# ytt
+ytt_checksum: "sha256:11222665c627b8f0a1443534a3dde3c9b3aac08b322d28e91f0e011e3aeb7df5"
+ytt_installation_path: /opt/ytt
+ytt_version: 0.40.1

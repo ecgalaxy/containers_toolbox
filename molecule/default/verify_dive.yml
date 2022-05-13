@@ -1,0 +1,9 @@
+---
+- name: Check dive version
+  ansible.builtin.command: dive --version
+  changed_when: false
+  register: output
+- name: Assert that dive is installed
+  ansible.builtin.assert:
+    that:
+    - "'{{ dive_version }}' in output.stdout"
