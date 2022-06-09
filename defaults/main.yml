@@ -18,7 +18,7 @@ kapp_installation_path: /opt/kapp
 kapp_version: 0.47.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
-kubectl_version_url: https://dl.k8s.io/release/stable.txt
+kubectl_version: 1.21.13
 # pack
 pack_installation_path: /opt/pack
 pack_version: 0.26.0

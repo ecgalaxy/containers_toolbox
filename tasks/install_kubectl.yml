@@ -1,22 +1,16 @@
 ---
 
-- name: Kubectl | Retrieve kubectl latest version
-  ansible.builtin.uri:
-    url: "{{ kubectl_version_url }}"
-    return_content: true
-  register: kubectl_version
-
 - name: Kubectl | Retrieve kubectl checksum
   ansible.builtin.uri:
-    url: "https://dl.k8s.io/{{ kubectl_version.content }}/bin/linux/amd64/kubectl.sha256"
+    url: "https://dl.k8s.io/v{{ kubectl_version }}/bin/linux/amd64/kubectl.sha256"
     return_content: true
   register: kubectl_checksum
 
 - name: Kubectl | Set facts
   ansible.builtin.set_fact:
-    kubectl_download_url: "https://dl.k8s.io/release/{{ kubectl_version.content }}/bin/linux/amd64/kubectl"
+    kubectl_download_url: "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/linux/amd64/kubectl"
     kubectl_checksum_url: "sha256:{{ kubectl_checksum.content }}"
-    kubectl_installation_subpath: "{{ kubectl_installation_path }}/{{ kubectl_version.content }}"
+    kubectl_installation_subpath: "{{ kubectl_installation_path }}/{{ kubectl_version }}"
 
 - name: Kubectl | Check if kubectl is already installed
   ansible.builtin.stat:
