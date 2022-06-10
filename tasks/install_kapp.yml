@@ -35,6 +35,7 @@
       dest: "{{ kapp_installation_subpath }}"
       remote_src: true
       mode: 'u=rwx,go=rx'
+    become: true
     register: kapp_bin_path
 
   - name: Kapp | Create kapp symlink

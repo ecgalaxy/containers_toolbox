@@ -35,6 +35,7 @@
       dest: "{{ ytt_installation_subpath }}"
       remote_src: true
       mode: 'u=rwx,go=rx'
+    become: true
     register: ytt_bin_path
 
   - name: Ytt  | Create ytt symlink

@@ -42,6 +42,7 @@
       dest: "{{ kubectl_installation_subpath }}"
       remote_src: true
       mode: 'u=rwx,go=rx'
+    become: true
     register: kubectl_bin_path
 
   - name: Kubectl | Create kubectl symlink
