@@ -9,13 +9,13 @@ helm_checksum: "sha256:1484ffb0c7a608d8069470f48b88d729e88c41a1b6602f145231e8ea7
 helm_installation_path: /opt/helm
 helm_version: 3.9.0
 # k9s
-k9s_checksum: "sha256:d288aacc368ab6b243fc9e7ecd17b53fa34a813509c2dc3023171085db83cf9d"
+k9s_checksum: "sha256:cddbc88403d1cfb02f3e55558b61ce63a0486f9bb8fcd258fcd104565b794c80"
 k9s_installation_path: /opt/k9s
-k9s_version: 0.25.18
+k9s_version: 0.26.0
 # kapp
-kapp_checksum: "sha256:dec5040d90478fdf0af3c1548d46f9ded642f156245bba83fe99171c8461e4f7"
+kapp_checksum: "sha256:a9bcebef169ba759ba24b341f42022edef5b234b8ba61116df2305b3c8c5f2fb"
 kapp_installation_path: /opt/kapp
-kapp_version: 0.49.0
+kapp_version: 0.50.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
 kubectl_version: 1.21.13
@@ -23,6 +23,6 @@ kubectl_version: 1.21.13
 pack_installation_path: /opt/pack
 pack_version: 0.27.0
 # ytt
-ytt_checksum: "sha256:65dbc4f3a4a2ed84296dd1b323e8e7bd77e488fa7540d12dd36cf7fb2fc77c03"
+ytt_checksum: "sha256:aa7074d08dc35e588ab0e014f53e98aec0cfed6c3babf8a953c4225007e49ae7"
 ytt_installation_path: /opt/ytt
-ytt_version: 0.41.1
+ytt_version: 0.42.0
