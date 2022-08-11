@@ -12,9 +12,9 @@ k9s_checksum: "sha256:3447ac17cfa46fe91ab2bfcb021d43f7f2d40ac37c7b573241a511b85f
 k9s_installation_path: /opt/k9s
 k9s_version: 0.26.3
 # kapp
-kapp_checksum: "sha256:58443df4200c683597f5c8a43ea8f5b7110bbcb1fbd8ca3f2061e9eff1a10e0e"
+kapp_checksum: "sha256:9c6ab08ddb4f950eeed9df4b8618d43d3cf82f076c24073885904b3c14ba5bd7"
 kapp_installation_path: /opt/kapp
-kapp_version: 0.51.0
+kapp_version: 0.52.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
 kubectl_version: 1.21.13
