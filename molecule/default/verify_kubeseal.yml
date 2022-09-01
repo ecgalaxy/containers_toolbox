@@ -1,0 +1,9 @@
+---
+- name: Check kubeseal version
+  ansible.builtin.command: kubeseal --version
+  changed_when: false
+  register: output
+- name: Assert that kubeseal is installed
+  ansible.builtin.assert:
+    that:
+    - "'kubeseal version' in output.stdout"

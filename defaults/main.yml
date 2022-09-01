@@ -18,6 +18,11 @@ kapp_version: 0.52.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
 kubectl_version: 1.21.13
+# kubeseal
+kubeseal_installation_path: /opt/kubeseal
+kubeseal_version: 0.18.2
+kubeseal_checksum: "sha256:dd09381a65983c3617e00a41cce19ec37f7e4c5c23c9a048bd8812bf057727ca"
+kubeseal_force_update: false
 # pack
 pack_installation_path: /opt/pack
 pack_version: 0.27.0

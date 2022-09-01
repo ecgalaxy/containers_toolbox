@@ -1,0 +1,58 @@
+---
+
+- name: kubeseal  | Set facts
+  ansible.builtin.set_fact:
+    kubeseal_download_url: "https://github.com/bitnami-labs/sealed-secrets/releases/download/v{{ kubeseal_version }}/kubeseal-{{ kubeseal_version }}-linux-amd64.tar.gz"
+    kubeseal_installation_subpath: "{{ kubeseal_installation_path }}/{{ kubeseal_version }}"
+
+- name: kubeseal  | Check if kubeseal is already installed
+  ansible.builtin.stat:
+    path: "{{ kubeseal_installation_subpath }}"
+  register: kubeseal_already_installed
+
+- name: kubeseal  | Install kubeseal
+  block:
+  - name: kubeseal  | Create kubeseal installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ kubeseal_installation_subpath }}"
+    become: true
+
+  - name: kubeseal  | Download kubeseal
+    ansible.builtin.get_url:
+      url: "{{ kubeseal_download_url }}"
+      checksum: "{{ kubeseal_checksum }}"
+      mode: 'u=rwx,go=rx'
+      dest: /tmp
+    register: downloaded_file
+
+  - name: kubeseal  | Install kubeseal
+    ansible.builtin.unarchive:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ kubeseal_installation_subpath }}"
+      owner: "root"
+      group: "root"
+      mode: "u=rwx,go=rx"
+      remote_src: yes
+    become: true
+    register: kubeseal_bin_path
+
+  - name: kubeseal  | Create kubeseal symlink
+    ansible.builtin.file:
+      src: "{{ kubeseal_installation_subpath }}/kubeseal"
+      dest: /usr/local/bin/kubeseal
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: kubeseal  | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+    changed_when: false
+  when: not kubeseal_already_installed.stat.exists or kubeseal_force_update

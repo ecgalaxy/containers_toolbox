@@ -8,6 +8,7 @@ List of tools:
 - k9s
 - kapp
 - kubectl
+- kubeseal
 - pack
 - ytt
 

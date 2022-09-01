@@ -10,6 +10,8 @@
   include: install_kapp.yml
 - name: Install kubectl
   include: install_kubectl.yml
+- name: Install kubeseal
+  include: install_kubeseal.yml
 - name: Install pack
   include: install_pack.yml
 - name: Install ytt
