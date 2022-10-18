@@ -7,42 +7,42 @@ platforms:
   - name: amazonlinux2-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/amazonlinux2-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
   - name: centos7-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/centos7-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
   - name: rockylinux8-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/rockylinux8-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
   - name: ubuntu1804-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/ubuntu1804-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
   - name: ubuntu2004-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/ubuntu2004-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"
   - name: ubuntu2204-${CI_JOB_ID:-0}
     image: code.europa.eu:4567/ecgalaxy/ubuntu2204-ansible:latest
     pre_build_image: true
-    env:
+    environment:
       http_proxy: "${http_proxy}"
       https_proxy: "${https_proxy}"
       no_proxy: "${no_proxy}"

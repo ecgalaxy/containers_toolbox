@@ -1,18 +1,17 @@
 ---
-
 - name: Install dive
-  include: install_dive.yml
+  ansible.builtin.include_tasks: install_dive.yml
 - name: Install helm
-  include: install_helm.yml
+  ansible.builtin.include_tasks: install_helm.yml
 - name: Install k9s
-  include: install_k9s.yml
+  ansible.builtin.include_tasks: install_k9s.yml
 - name: Install kapp
-  include: install_kapp.yml
+  ansible.builtin.include_tasks: install_kapp.yml
 - name: Install kubectl
-  include: install_kubectl.yml
+  ansible.builtin.include_tasks: install_kubectl.yml
 - name: Install kubeseal
-  include: install_kubeseal.yml
+  ansible.builtin.include_tasks: install_kubeseal.yml
 - name: Install pack
-  include: install_pack.yml
+  ansible.builtin.include_tasks: install_pack.yml
 - name: Install ytt
-  include: install_ytt.yml
+  ansible.builtin.include_tasks: install_ytt.yml
