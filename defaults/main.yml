@@ -4,9 +4,9 @@ dive_checksum: "sha256:9541997876d4985de66d0fa5924dac72258a3094ef7d3f6ef5fa5dcf6
 dive_installation_path: /opt/dive
 dive_version: 0.10.0
 # helm
-helm_checksum: "sha256:bf56beb418bb529b5e0d6d43d56654c5a03f89c98400b409d1013a33d9586474"
+helm_checksum: "sha256:c12d2cd638f2d066fec123d0bd7f010f32c643afdf288d39a4610b1f9cb32af3"
 helm_installation_path: /opt/helm
-helm_version: 3.10.0
+helm_version: 3.10.1
 # k9s
 k9s_checksum: "sha256:7abe5d029a29d8108ab405889ea2a8f731765d79333920ac7c2942c6e16d1bd4"
 k9s_installation_path: /opt/k9s
