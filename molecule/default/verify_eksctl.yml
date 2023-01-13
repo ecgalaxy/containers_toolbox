@@ -1,0 +1,9 @@
+---
+- name: Check eksctl version
+  ansible.builtin.command: eksctl version
+  changed_when: false
+  register: output
+- name: Assert that eksctl is installed
+  ansible.builtin.assert:
+    that:
+    - "'{{ eksctl_version }}' in output.stdout"

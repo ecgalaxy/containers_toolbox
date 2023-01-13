@@ -6,6 +6,8 @@
   tasks:
     - name: verify dive
       include: verify_dive.yml
+    - name: verify eksctl
+      include: verify_eksctl.yml
     - name: verify helm
       include: verify_helm.yml
     - name: verify k9s

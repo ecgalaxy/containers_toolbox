@@ -1,0 +1,57 @@
+---
+
+- name: Eksctl | Set facts
+  ansible.builtin.set_fact:
+    eksctl_download_url: "https://github.com/weaveworks/eksctl/releases/download/v{{ eksctl_version }}/eksctl_Linux_amd64.tar.gz"
+    eksctl_installation_subpath: "{{ eksctl_installation_path }}/{{ eksctl_version }}"
+
+- name: Eksctl | Check if eksctl is already installed
+  ansible.builtin.stat:
+    path: "{{ eksctl_installation_subpath }}"
+  register: eksctl_already_installed
+
+- name: Eksctl | Install eksctl
+  block:
+  - name: Eksctl | Create eksctl installation directory
+    ansible.builtin.file:
+      state: directory
+      owner: root
+      group: root
+      mode: 'u=rwx,go=rx'
+      path: "{{ eksctl_installation_subpath }}"
+    become: true
+
+  - name: Eksctl | Download eksctl
+    ansible.builtin.get_url:
+      url: "{{ eksctl_download_url }}"
+      checksum: "{{ eksctl_checksum }}"
+      mode: 'u=rwx,go=rx'
+      dest: /tmp
+    register: downloaded_file
+
+  - name: Eksctl | Install eksctl
+    ansible.builtin.unarchive:
+      src: "{{ downloaded_file.dest }}"
+      dest: "{{ eksctl_installation_subpath }}"
+      owner: "root"
+      group: "root"
+      mode: "u=rwx,go=rx"
+      remote_src: yes
+    become: true
+    register: eksctl_bin_path
+
+  - name: Eksctl | Create eksctl symlink
+    ansible.builtin.file:
+      src: "{{ eksctl_installation_subpath }}/eksctl"
+      dest: /usr/local/bin/eksctl
+      owner: "root"
+      group: "root"
+      mode: 'u=rwx,go=rx'
+      state: link
+    become: true
+
+  - name: Eksctl | Clean up temporary files
+    ansible.builtin.file:
+      path: "{{ downloaded_file.dest }}"
+      state: absent
+  when: not eksctl_already_installed.stat.exists

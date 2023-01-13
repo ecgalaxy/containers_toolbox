@@ -2,8 +2,11 @@ ECGALAXY containers_toolbox role
 ========
 
 Ansible role to install tools required to work with containers.
+
 List of tools:
+
 - dive
+- eksctl
 - helm
 - k9s
 - kapp
@@ -17,7 +20,6 @@ Requirements
 
 None.
 
-
 Role Variables
 --------------
 
@@ -27,7 +29,6 @@ Dependencies
 ------------
 
 - ecgalaxy.common_packages
-
 
 Example Playbook
 ----------------

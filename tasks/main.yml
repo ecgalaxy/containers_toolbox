@@ -1,6 +1,8 @@
 ---
 - name: Install dive
   ansible.builtin.include_tasks: install_dive.yml
+- name: Install eksctl
+  ansible.builtin.include_tasks: install_eksctl.yml
 - name: Install helm
   ansible.builtin.include_tasks: install_helm.yml
 - name: Install k9s

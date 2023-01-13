@@ -1,5 +1,9 @@
 # Releases
 
+## 0.6.x
+
+- [eksctl](https://eksctl.io/) added.
+
 ## 0.5.x
 
 - [Sealed Secrets client (kubeseal)](https://github.com/bitnami-labs/sealed-secrets) added.
