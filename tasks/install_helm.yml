@@ -11,6 +11,7 @@
   register: helm_already_installed
 
 - name: Helm  | Install helm
+  when: not helm_already_installed.stat.exists
   block:
   - name: Helm  | Create helm installation directory
     ansible.builtin.file:
@@ -54,4 +55,3 @@
     ansible.builtin.file:
       path: "{{ downloaded_file.dest }}"
       state: absent
-  when: not helm_already_installed.stat.exists

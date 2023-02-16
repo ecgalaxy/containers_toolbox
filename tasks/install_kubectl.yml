@@ -18,6 +18,7 @@
   register: kubectl_already_installed
 
 - name: Kubectl | Install kubectl
+  when: not kubectl_already_installed.stat.exists
   block:
   - name: Kubectl | Create kubectl installation directory
     ansible.builtin.file:
@@ -59,4 +60,3 @@
     ansible.builtin.file:
       path: "{{ downloaded_file.dest }}"
       state: absent
-  when: not kubectl_already_installed.stat.exists

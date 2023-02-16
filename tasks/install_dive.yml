@@ -11,6 +11,7 @@
   register: dive_already_installed
 
 - name: Dive | Install dive
+  when: not dive_already_installed.stat.exists
   block:
   - name: Dive | Create dive installation directory
     ansible.builtin.file:
@@ -54,4 +55,3 @@
     ansible.builtin.file:
       path: "{{ downloaded_file.dest }}"
       state: absent
-  when: not dive_already_installed.stat.exists

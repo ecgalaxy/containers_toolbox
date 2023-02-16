@@ -11,6 +11,7 @@
   register: k9s_already_installed
 
 - name: K9s  | Install k9s
+  when: not k9s_already_installed.stat.exists
   block:
   - name: K9s  | Create k9s installation directory
     ansible.builtin.file:
@@ -55,4 +56,3 @@
       path: "{{ downloaded_file.dest }}"
       state: absent
     changed_when: false
-  when: not k9s_already_installed.stat.exists

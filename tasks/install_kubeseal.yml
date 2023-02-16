@@ -11,6 +11,7 @@
   register: kubeseal_already_installed
 
 - name: Kubeseal  | Install kubeseal
+  when: not kubeseal_already_installed.stat.exists or kubeseal_force_update
   block:
   - name: Kubeseal  | Create kubeseal installation directory
     ansible.builtin.file:
@@ -55,4 +56,3 @@
       path: "{{ downloaded_file.dest }}"
       state: absent
     changed_when: false
-  when: not kubeseal_already_installed.stat.exists or kubeseal_force_update

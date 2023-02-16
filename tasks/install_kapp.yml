@@ -11,6 +11,7 @@
   register: kapp_already_installed
 
 - name: Kapp | Install kapp
+  when: not kapp_already_installed.stat.exists
   block:
   - name: Kapp | Create kapp installation directory
     ansible.builtin.file:
@@ -52,4 +53,3 @@
     ansible.builtin.file:
       path: "{{ downloaded_file.dest }}"
       state: absent
-  when: not kapp_already_installed.stat.exists
