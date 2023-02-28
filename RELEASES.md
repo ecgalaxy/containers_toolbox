@@ -1,5 +1,9 @@
 # Releases
 
+## 0.7.x
+
+- [cosign](https://docs.sigstore.dev/cosign/overview/) added.
+
 ## 0.6.x
 
 - [eksctl](https://eksctl.io/) added.

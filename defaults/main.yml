@@ -1,4 +1,8 @@
 ---
+# cosign
+cosign_checksum: "sha256:169a53594c437d53ffc401b911b7e70d453f5a2c1f96eb2a736f34f6356c4f2b"
+cosign_installation_path: /opt/cosign
+cosign_version: 2.0.0
 # dive
 dive_checksum: "sha256:9541997876d4985de66d0fa5924dac72258a3094ef7d3f6ef5fa5dcf6f6a47ad"
 dive_installation_path: /opt/dive

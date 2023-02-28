@@ -1,0 +1,10 @@
+---
+- name: Check cosign version
+  ansible.builtin.command: cosign version
+  changed_when: false
+  register: output
+- name: Assert that cosign is installed
+  ansible.builtin.assert:
+    that:
+    - "'cosign: ' in output.stdout"
+    - "'v{{ cosign_version }}' in output.stdout"
