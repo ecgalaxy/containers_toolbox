@@ -4,6 +4,8 @@
   vars_files:
     - ../../defaults/main.yml
   tasks:
+    - name: verify cosign
+      include: verify_cosign.yml
     - name: verify dive
       include: verify_dive.yml
     - name: verify eksctl

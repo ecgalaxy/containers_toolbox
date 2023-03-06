@@ -1,4 +1,6 @@
 ---
+- name: Install cosign
+  ansible.builtin.include_tasks: install_cosign.yml
 - name: Install dive
   ansible.builtin.include_tasks: install_dive.yml
 - name: Install eksctl

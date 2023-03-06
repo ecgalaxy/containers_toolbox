@@ -6,5 +6,5 @@
 - name: Assert that cosign is installed
   ansible.builtin.assert:
     that:
-    - "'cosign: ' in output.stdout"
-    - "'v{{ cosign_version }}' in output.stdout"
+    - "'cosign: ' in output.stderr"
+    - "'v{{ cosign_version }}' in output.stderr"
