@@ -1,5 +1,9 @@
 # Releases
 
+## 0.8.x
+
+- [kpack CLI](https://github.com/vmware-tanzu/kpack-cli) added.
+
 ## 0.7.x
 
 - [cosign](https://docs.sigstore.dev/cosign/overview/) added.

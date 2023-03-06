@@ -11,6 +11,7 @@ List of tools:
 - helm
 - k9s
 - kapp
+- kpack CLI (kp)
 - kubectl
 - kubeseal
 - pack

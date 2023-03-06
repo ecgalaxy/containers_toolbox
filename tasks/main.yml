@@ -11,6 +11,8 @@
   ansible.builtin.include_tasks: install_k9s.yml
 - name: Install kapp
   ansible.builtin.include_tasks: install_kapp.yml
+- name: Install kp
+  ansible.builtin.include_tasks: install_kp.yml
 - name: Install kubectl
   ansible.builtin.include_tasks: install_kubectl.yml
 - name: Install kubeseal

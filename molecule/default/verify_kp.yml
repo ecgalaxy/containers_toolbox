@@ -1,0 +1,9 @@
+---
+- name: Check kp version
+  ansible.builtin.command: kp version
+  changed_when: false
+  register: output
+- name: Assert that kp is installed
+  ansible.builtin.assert:
+    that:
+    - "'{{ kp_version }}' in output.stdout"

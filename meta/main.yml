@@ -19,8 +19,9 @@ galaxy_info:
         - focal
         - jammy
   galaxy_tags:
+    - buildpacks
+    - containers
     - k8s
     - kubernetes
-    - containers
 dependencies:
     - role: ecgalaxy.common_packages

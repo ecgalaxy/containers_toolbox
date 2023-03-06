@@ -23,6 +23,10 @@ k9s_version: 0.27.3
 kapp_checksum: "sha256:6b53e0d866fb3cdcb781475c23973eab6c37959e53c22094bc81f998884d74ae"
 kapp_installation_path: /opt/kapp
 kapp_version: 0.54.3
+# kpack CLI
+kp_checksum: "sha256:42792517f6d34659ff0edc77ef1d3847e88b41f49c2319deaef38a2aa55d625f"
+kp_installation_path: /opt/kp
+kp_version: 0.10.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
 kubectl_version: 1.24.10

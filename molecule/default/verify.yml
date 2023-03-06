@@ -16,6 +16,8 @@
       include: verify_k9s.yml
     - name: verify kapp
       include: verify_kapp.yml
+    - name: verify kp
+      include: verify_kp.yml
     - name: verify kubectl
       include: verify_kubectl.yml
     - name: verify kubeseal
