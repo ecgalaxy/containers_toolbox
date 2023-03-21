@@ -20,9 +20,9 @@ k9s_checksum: "sha256:b0eb5fb0decedbee5b6bd415f72af8ce6135ffb8128f9709bc7adcd5cb
 k9s_installation_path: /opt/k9s
 k9s_version: 0.27.3
 # kapp
-kapp_checksum: "sha256:6b53e0d866fb3cdcb781475c23973eab6c37959e53c22094bc81f998884d74ae"
+kapp_checksum: "sha256:9aaa735985efbe240af0ca1d80adf3b43be6cf4ec6620a053082e31bea25dae7"
 kapp_installation_path: /opt/kapp
-kapp_version: 0.54.3
+kapp_version: 0.55.0
 # kpack CLI
 kp_checksum: "sha256:42792517f6d34659ff0edc77ef1d3847e88b41f49c2319deaef38a2aa55d625f"
 kp_installation_path: /opt/kp
