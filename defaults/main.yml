@@ -37,7 +37,7 @@ kubeseal_checksum: "sha256:4f2be0784dbc7afe584a9c120cdb1f3d18032f742a9599d053455
 kubeseal_force_update: false
 # pack
 pack_installation_path: /opt/pack
-pack_version: 0.28.0
+pack_version: 0.29.0
 # ytt
 ytt_checksum: "sha256:d05f430ac18b3791d831f4cfd78371a7549f225dfaeb6fef2e5bfcd293d6c382"
 ytt_installation_path: /opt/ytt
