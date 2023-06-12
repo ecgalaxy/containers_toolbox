@@ -1,0 +1,9 @@
+---
+- name: Check skopeo command
+  ansible.builtin.command: skopeo --version
+  changed_when: false
+  register: output
+- name: Assert that skopeo is installed
+  ansible.builtin.assert:
+    that:
+    - "'skopeo version' in output.stdout"

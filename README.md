@@ -15,7 +15,10 @@ List of tools:
 - kubectl
 - kubeseal
 - pack
+- skopeo (*)
 - ytt
+
+(*) Skopeo installation not yet supported on Amazon Linux 2 and Ubuntu before 22.04 LTS.
 
 Requirements
 ------------

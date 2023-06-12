@@ -1,5 +1,9 @@
 # Releases
 
+## 0.9.x
+
+- [skopeo](https://github.com/containers/skopeo) added (limited support, see readme).
+
 ## 0.8.x
 
 - [kpack CLI](https://github.com/vmware-tanzu/kpack-cli) added.

@@ -24,5 +24,9 @@
       include: verify_kubeseal.yml
     - name: verify pack
       include: verify_pack.yml
+    - name: verify skopeo
+      include: verify_skopeo.yml
+      when: (ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon') or
+            (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22)
     - name: verify ytt
       include: verify_ytt.yml

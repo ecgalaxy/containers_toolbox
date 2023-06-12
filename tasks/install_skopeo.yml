@@ -1,0 +1,6 @@
+---
+- name: Skopeo | Install skopeo
+  ansible.builtin.package:
+    name: skopeo
+    state: present
+  become: true
