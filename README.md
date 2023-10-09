@@ -23,7 +23,7 @@ List of tools:
 Requirements
 ------------
 
-None.
+- The `unzip` command, which can be provided by the `ecgalaxy.common_packages` role.
 
 Role Variables
 --------------
@@ -33,13 +33,14 @@ For the list of all the available variables check the files under `defaults/` an
 Dependencies
 ------------
 
-- ecgalaxy.common_packages
+- optional: ecgalaxy.common_packages
 
 Example Playbook
 ----------------
 
     - hosts: all
       roles:
+        - ecgalaxy.bootstrap
         - ecgalaxy.common_packages
         - ecgalaxy.containers_toolbox
 

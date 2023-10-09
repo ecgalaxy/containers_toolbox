@@ -3,6 +3,7 @@
   hosts: all
   become: true
   roles:
+    - role: ecgalaxy.bootstrap
     - role: ecgalaxy.common_packages
   tasks:
     - name: Include containers_toolbox

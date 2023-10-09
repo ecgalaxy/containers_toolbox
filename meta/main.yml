@@ -6,9 +6,9 @@ galaxy_info:
   license: EUPL-1.2
   min_ansible_version: "2.5"
   platforms:
-    - name: Amazon Linux 2
+    - name: Amazon Linux
       versions:
-        - all
+        - "2"
     - name: EL
       versions:
         - "7"
@@ -23,5 +23,4 @@ galaxy_info:
     - containers
     - k8s
     - kubernetes
-dependencies:
-    - role: ecgalaxy.common_packages
+dependencies: []
