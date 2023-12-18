@@ -1,7 +1,7 @@
 ECGALAXY containers_toolbox role
-========
+================================
 
-Ansible role which installs tools required to work with containers.
+Ansible role which installs tools required to work with containers and Kubernetes clusters.
 
 List of tools:
 

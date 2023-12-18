@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: ecgalaxy
-  description: Ansible role to install containers-related tools
+  description: Ansible role to install containers and Kubernetes-related tools
   company: European Commission
   license: EUPL-1.2
   min_ansible_version: "2.5"
