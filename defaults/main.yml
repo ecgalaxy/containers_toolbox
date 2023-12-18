@@ -16,9 +16,9 @@ helm_checksum: "sha256:ca2d5d40d4cdfb9a3a6205dd803b5bc8def00bd2f13e5526c127e9b66
 helm_installation_path: /opt/helm
 helm_version: 3.11.3
 # k9s
-k9s_checksum: "sha256:b0eb5fb0decedbee5b6bd415f72af8ce6135ffb8128f9709bc7adcd5cbfa690b"
+k9s_checksum: "sha256:b7ed81a8952a5520a1a6978c3cf68b1fd555d928a444c63d4b826ae6fbb6d9ff"
 k9s_installation_path: /opt/k9s
-k9s_version: 0.27.3
+k9s_version: 0.29.1
 # kapp
 kapp_checksum: "sha256:c7e261a7ff61ab240b5c15229c9ab54172bb719066295858e89e56a77656b1cc"
 kapp_installation_path: /opt/kapp
