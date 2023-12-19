@@ -32,8 +32,8 @@ kubectl_installation_path: /opt/kubectl
 kubectl_version: 1.28.4
 # kubeseal
 kubeseal_installation_path: /opt/kubeseal
-kubeseal_version: 0.20.5
-kubeseal_checksum: "sha256:00de1d33c634af03080ff7c9f409ad1cb00ed863f93e4fb3b5ed1c13572d0069"
+kubeseal_version: 0.24.5
+kubeseal_checksum: "sha256:f3ba81d754f0c67e4bd13118d334cbdb816573e943395532dce674cdbe923710"
 kubeseal_force_update: false
 # pack
 pack_installation_path: /opt/pack
