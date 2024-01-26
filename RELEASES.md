@@ -1,5 +1,9 @@
 # Releases
 
+## 1.0.x
+
+- `kapp` and `ytt` removed.
+
 ## 0.9.x
 
 - [skopeo](https://github.com/containers/skopeo) added (limited support, see readme).

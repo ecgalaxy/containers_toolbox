@@ -9,8 +9,6 @@
   ansible.builtin.include_tasks: install_helm.yml
 - name: Install k9s
   ansible.builtin.include_tasks: install_k9s.yml
-- name: Install kapp
-  ansible.builtin.include_tasks: install_kapp.yml
 - name: Install kp
   ansible.builtin.include_tasks: install_kp.yml
 - name: Install kubectl
@@ -23,5 +21,3 @@
   ansible.builtin.include_tasks: install_skopeo.yml
   when: (ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon') or
         (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22)
-- name: Install ytt
-  ansible.builtin.include_tasks: install_ytt.yml

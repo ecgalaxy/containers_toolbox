@@ -14,8 +14,6 @@
       include_tasks: verify_helm.yml
     - name: verify k9s
       include_tasks: verify_k9s.yml
-    - name: verify kapp
-      include_tasks: verify_kapp.yml
     - name: verify kp
       include_tasks: verify_kp.yml
     - name: verify kubectl
@@ -28,5 +26,3 @@
       include_tasks: verify_skopeo.yml
       when: (ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon') or
             (ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22)
-    - name: verify ytt
-      include_tasks: verify_ytt.yml

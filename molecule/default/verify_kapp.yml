@@ -1,9 +1,0 @@
----
-- name: Check kapp version
-  ansible.builtin.command: kapp --version
-  changed_when: false
-  register: output
-- name: Assert that kapp is installed
-  ansible.builtin.assert:
-    that:
-    - "'kapp version {{ kapp_version }}' in output.stdout"

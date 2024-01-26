@@ -10,13 +10,11 @@ List of tools:
 - eksctl
 - helm
 - k9s
-- kapp
 - kpack CLI (kp)
 - kubectl
 - kubeseal
 - pack
 - skopeo (*)
-- ytt
 
 (*) Skopeo installation not yet supported on Amazon Linux 2 and Ubuntu before 22.04 LTS.
 
