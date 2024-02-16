@@ -12,9 +12,9 @@ eksctl_checksum: "sha256:71e44260d6ccd0b4ea7acc3831773f317dbfbbb2280c807a0cc7740
 eksctl_installation_path: /opt/eksctl
 eksctl_version: 0.166.0
 # helm
-helm_checksum: "sha256:bbb6e7c6201458b235f335280f35493950dcd856825ddcfd1d3b40ae757d5c7d"
+helm_checksum: "sha256:75496ea824f92305ff7d28af37f4af57536bf5138399c824dff997b9d239dd42"
 helm_installation_path: /opt/helm
-helm_version: 3.13.3
+helm_version: 3.14.1
 # k9s
 k9s_checksum: "sha256:b7ed81a8952a5520a1a6978c3cf68b1fd555d928a444c63d4b826ae6fbb6d9ff"
 k9s_installation_path: /opt/k9s
