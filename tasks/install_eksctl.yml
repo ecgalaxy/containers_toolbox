@@ -2,7 +2,7 @@
 
 - name: Eksctl | Set facts
   ansible.builtin.set_fact:
-    eksctl_download_url: "https://github.com/weaveworks/eksctl/releases/download/v{{ eksctl_version }}/eksctl_Linux_amd64.tar.gz"
+    eksctl_download_url: "https://github.com/eksctl-io/eksctl/releases/download/v{{ eksctl_version }}/eksctl_Linux_amd64.tar.gz"
     eksctl_installation_subpath: "{{ eksctl_installation_path }}/{{ eksctl_version }}"
 
 - name: Eksctl | Check if eksctl is already installed
