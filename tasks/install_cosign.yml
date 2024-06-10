@@ -13,43 +13,43 @@
 - name: Cosign | Install cosign
   when: not cosign_already_installed.stat.exists
   block:
-  - name: Cosign | Create cosign installation directory
-    ansible.builtin.file:
-      state: directory
-      owner: root
-      group: root
-      mode: 'u=rwx,go=rx'
-      path: "{{ cosign_installation_subpath }}"
-    become: true
+    - name: Cosign | Create cosign installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ cosign_installation_subpath }}"
+      become: true
 
-  - name: Cosign | Download cosign
-    ansible.builtin.get_url:
-      url: "{{ cosign_download_url }}"
-      checksum: "{{ cosign_checksum }}"
-      mode: 'u=rwx,go=rx'
-      dest: /tmp
-    register: downloaded_file
+    - name: Cosign | Download cosign
+      ansible.builtin.get_url:
+        url: "{{ cosign_download_url }}"
+        checksum: "{{ cosign_checksum }}"
+        mode: 'u=rwx,go=rx'
+        dest: /tmp
+      register: downloaded_file
 
-  - name: Cosign | Install cosign
-    ansible.builtin.copy:
-      src: "{{ downloaded_file.dest }}"
-      dest: "{{ cosign_installation_subpath }}"
-      remote_src: true
-      mode: 'u=rwx,go=rx'
-    become: true
-    register: cosign_bin_path
+    - name: Cosign | Install cosign
+      ansible.builtin.copy:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ cosign_installation_subpath }}"
+        remote_src: true
+        mode: 'u=rwx,go=rx'
+      become: true
+      register: cosign_bin_path
 
-  - name: Cosign | Create cosign symlink
-    ansible.builtin.file:
-      src: "{{ cosign_bin_path.dest }}"
-      dest: /usr/local/bin/cosign
-      owner: "root"
-      group: "root"
-      mode: 'u=rwx,go=rx'
-      state: link
-    become: true
+    - name: Cosign | Create cosign symlink
+      ansible.builtin.file:
+        src: "{{ cosign_bin_path.dest }}"
+        dest: /usr/local/bin/cosign
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
 
-  - name: Cosign | Clean up temporary files
-    ansible.builtin.file:
-      path: "{{ downloaded_file.dest }}"
-      state: absent
+    - name: Cosign | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent

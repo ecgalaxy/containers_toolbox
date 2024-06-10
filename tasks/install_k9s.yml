@@ -13,46 +13,46 @@
 - name: K9s  | Install k9s
   when: not k9s_already_installed.stat.exists
   block:
-  - name: K9s  | Create k9s installation directory
-    ansible.builtin.file:
-      state: directory
-      owner: root
-      group: root
-      mode: 'u=rwx,go=rx'
-      path: "{{ k9s_installation_subpath }}"
-    become: true
+    - name: K9s  | Create k9s installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ k9s_installation_subpath }}"
+      become: true
 
-  - name: K9s  | Download k9s
-    ansible.builtin.get_url:
-      url: "{{ k9s_download_url }}"
-      checksum: "{{ k9s_checksum }}"
-      mode: 'u=rwx,go=rx'
-      dest: /tmp
-    register: downloaded_file
+    - name: K9s  | Download k9s
+      ansible.builtin.get_url:
+        url: "{{ k9s_download_url }}"
+        checksum: "{{ k9s_checksum }}"
+        mode: 'u=rwx,go=rx'
+        dest: /tmp
+      register: downloaded_file
 
-  - name: K9s  | Install k9s
-    ansible.builtin.unarchive:
-      src: "{{ downloaded_file.dest }}"
-      dest: "{{ k9s_installation_subpath }}"
-      owner: "root"
-      group: "root"
-      mode: "u=rwx,go=rx"
-      remote_src: yes
-    become: true
-    register: k9s_bin_path
+    - name: K9s  | Install k9s
+      ansible.builtin.unarchive:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ k9s_installation_subpath }}"
+        owner: "root"
+        group: "root"
+        mode: "u=rwx,go=rx"
+        remote_src: true
+      become: true
+      register: k9s_bin_path
 
-  - name: K9s  | Create k9s symlink
-    ansible.builtin.file:
-      src: "{{ k9s_installation_subpath }}/k9s"
-      dest: /usr/local/bin/k9s
-      owner: "root"
-      group: "root"
-      mode: 'u=rwx,go=rx'
-      state: link
-    become: true
+    - name: K9s  | Create k9s symlink
+      ansible.builtin.file:
+        src: "{{ k9s_installation_subpath }}/k9s"
+        dest: /usr/local/bin/k9s
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
 
-  - name: K9s  | Clean up temporary files
-    ansible.builtin.file:
-      path: "{{ downloaded_file.dest }}"
-      state: absent
-    changed_when: false
+    - name: K9s  | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent
+      changed_when: false

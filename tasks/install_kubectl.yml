@@ -20,43 +20,43 @@
 - name: Kubectl | Install kubectl
   when: not kubectl_already_installed.stat.exists
   block:
-  - name: Kubectl | Create kubectl installation directory
-    ansible.builtin.file:
-      state: directory
-      owner: root
-      group: root
-      mode: 'u=rwx,go=rx'
-      path: "{{ kubectl_installation_subpath }}"
-    become: true
+    - name: Kubectl | Create kubectl installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ kubectl_installation_subpath }}"
+      become: true
 
-  - name: Kubectl | Download kubectl
-    ansible.builtin.get_url:
-      url: "{{ kubectl_download_url }}"
-      checksum: "{{ kubectl_checksum_url }}"
-      dest: /tmp
-      mode: "u=rwx,go=rx"
-    register: downloaded_file
+    - name: Kubectl | Download kubectl
+      ansible.builtin.get_url:
+        url: "{{ kubectl_download_url }}"
+        checksum: "{{ kubectl_checksum_url }}"
+        dest: /tmp
+        mode: "u=rwx,go=rx"
+      register: downloaded_file
 
-  - name: Kubectl | Install kubectl
-    ansible.builtin.copy:
-      src: "{{ downloaded_file.dest }}"
-      dest: "{{ kubectl_installation_subpath }}"
-      remote_src: true
-      mode: 'u=rwx,go=rx'
-    become: true
-    register: kubectl_bin_path
+    - name: Kubectl | Install kubectl
+      ansible.builtin.copy:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ kubectl_installation_subpath }}"
+        remote_src: true
+        mode: 'u=rwx,go=rx'
+      become: true
+      register: kubectl_bin_path
 
-  - name: Kubectl | Create kubectl symlink
-    ansible.builtin.file:
-      src: "{{ kubectl_bin_path.dest }}"
-      dest: /usr/local/bin/kubectl
-      owner: "root"
-      group: "root"
-      mode: 'u=rwx,go=rx'
-      state: link
-    become: true
+    - name: Kubectl | Create kubectl symlink
+      ansible.builtin.file:
+        src: "{{ kubectl_bin_path.dest }}"
+        dest: /usr/local/bin/kubectl
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
 
-  - name: Kubectl | Clean up temporary files
-    ansible.builtin.file:
-      path: "{{ downloaded_file.dest }}"
-      state: absent
+    - name: Kubectl | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent

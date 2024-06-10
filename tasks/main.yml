@@ -1,4 +1,6 @@
 ---
+- name: Install argocd
+  ansible.builtin.include_tasks: install_argocd.yml
 - name: Install cosign
   ansible.builtin.include_tasks: install_cosign.yml
 - name: Install dive
@@ -17,6 +19,8 @@
   ansible.builtin.include_tasks: install_kubeseal.yml
 - name: Install pack
   ansible.builtin.include_tasks: install_pack.yml
+- name: Install regctl
+  ansible.builtin.include_tasks: install_regctl.yml
 - name: Install skopeo
   ansible.builtin.include_tasks: install_skopeo.yml
   when: (ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon') or

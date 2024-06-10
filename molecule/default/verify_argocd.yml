@@ -1,0 +1,9 @@
+---
+- name: Check argocd version
+  ansible.builtin.command: "argocd version --client"
+  changed_when: false
+  register: output
+- name: Assert that argocd is installed
+  ansible.builtin.assert:
+    that:
+    - "'argocd: v{{ argocd_version }}' in output.stdout"

@@ -1,5 +1,10 @@
 # Releases
 
+## 1.1.x
+
+- [Argo CD CLI](https://argo-cd.readthedocs.io/en/stable/) added.
+- [regctl](https://github.com/regclient/regclient) added.
+
 ## 1.0.x
 
 - `kapp` and `ytt` removed.

@@ -1,0 +1,54 @@
+---
+- name: Argo CD | Set facts
+  ansible.builtin.set_fact:
+    argocd_download_url: "https://github.com/argoproj/argo-cd/releases/download/v{{ argocd_version }}/argocd-linux-amd64"
+    argocd_installation_subpath: "{{ argocd_installation_path }}/{{ argocd_version }}"
+
+- name: Argo CD | Check if Argo CD is already installed
+  ansible.builtin.stat:
+    path: "{{ argocd_installation_subpath }}"
+  register: argocd_already_installed
+
+- name: Argo CD | Install Argo CD
+  when: not argocd_already_installed.stat.exists
+  block:
+    - name: Argo CD | Create Argo CD installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ argocd_installation_subpath }}"
+      become: true
+
+    - name: Argo CD | Download Argo CD
+      ansible.builtin.get_url:
+        url: "{{ argocd_download_url }}"
+        checksum: "{{ argocd_checksum }}"
+        mode: 'u=rwx,go=rx'
+        dest: /tmp
+      register: downloaded_file
+
+    - name: Argo CD | Install Argo CD
+      ansible.builtin.copy:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ argocd_installation_subpath }}"
+        remote_src: true
+        mode: 'u=rwx,go=rx'
+      become: true
+      register: argocd_bin_path
+
+    - name: Argo CD | Create Argo CD symlink
+      ansible.builtin.file:
+        src: "{{ argocd_bin_path.dest }}"
+        dest: /usr/local/bin/argocd
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
+
+    - name: Argo CD | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent

@@ -1,0 +1,9 @@
+---
+- name: Check regctl version
+  ansible.builtin.command: regctl version
+  changed_when: false
+  register: output
+- name: Assert that regctl is installed
+  ansible.builtin.assert:
+    that:
+    - "'v{{ regctl_version }}' in output.stdout"

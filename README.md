@@ -1,10 +1,11 @@
 ECGALAXY containers_toolbox role
 ================================
 
-Ansible role which installs tools required to work with containers and Kubernetes clusters.
+Ansible role which installs tools required to work with containers, image registries and Kubernetes clusters.
 
 List of tools:
 
+- argocd
 - cosign
 - dive
 - eksctl
@@ -14,6 +15,7 @@ List of tools:
 - kubectl
 - kubeseal
 - pack
+- regctl
 - skopeo (*)
 
 (*) Skopeo installation not yet supported on Amazon Linux 2 and Ubuntu before 22.04 LTS.

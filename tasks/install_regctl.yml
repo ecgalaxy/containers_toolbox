@@ -1,0 +1,54 @@
+---
+- name: Regctl | Set facts
+  ansible.builtin.set_fact:
+    regctl_download_url: "https://github.com/regclient/regclient/releases/download/v{{ regctl_version }}/regctl-linux-amd64"
+    regctl_installation_subpath: "{{ regctl_installation_path }}/{{ regctl_version }}"
+
+- name: Regctl | Check if regctl is already installed
+  ansible.builtin.stat:
+    path: "{{ regctl_installation_subpath }}"
+  register: regctl_already_installed
+
+- name: Regctl | Install regctl
+  when: not regctl_already_installed.stat.exists
+  block:
+    - name: Regctl | Create regctl installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ regctl_installation_subpath }}"
+      become: true
+
+    - name: Regctl | Download regctl
+      ansible.builtin.get_url:
+        url: "{{ regctl_download_url }}"
+        checksum: "{{ regctl_checksum }}"
+        mode: 'u=rwx,go=rx'
+        dest: /tmp
+      register: downloaded_file
+
+    - name: Regctl | Install regctl
+      ansible.builtin.copy:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ regctl_installation_subpath }}"
+        remote_src: true
+        mode: 'u=rwx,go=rx'
+      become: true
+      register: regctl_bin_path
+
+    - name: Regctl | Create regctl symlink
+      ansible.builtin.file:
+        src: "{{ regctl_bin_path.dest }}"
+        dest: /usr/local/bin/regctl
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
+
+    - name: Regctl | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent

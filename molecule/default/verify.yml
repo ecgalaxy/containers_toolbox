@@ -4,6 +4,8 @@
   vars_files:
     - ../../defaults/main.yml
   tasks:
+    - name: verify argocd
+      include_tasks: verify_argocd.yml
     - name: verify cosign
       include_tasks: verify_cosign.yml
     - name: verify dive
@@ -22,6 +24,8 @@
       include_tasks: verify_kubeseal.yml
     - name: verify pack
       include_tasks: verify_pack.yml
+    - name: verify regctl
+      include_tasks: verify_regctl.yml
     - name: verify skopeo
       include_tasks: verify_skopeo.yml
       when: (ansible_os_family == 'RedHat' and ansible_distribution != 'Amazon') or

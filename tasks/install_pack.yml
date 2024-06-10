@@ -14,45 +14,45 @@
 - name: Pack  | Install pack
   when: not pack_already_installed.stat.exists
   block:
-  - name: Pack  | Create pack installation directory
-    ansible.builtin.file:
-      state: directory
-      owner: root
-      group: root
-      mode: 'u=rwx,go=rx'
-      path: "{{ pack_installation_subpath }}"
-    become: true
+    - name: Pack  | Create pack installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ pack_installation_subpath }}"
+      become: true
 
-  - name: Pack  | Download pack
-    ansible.builtin.get_url:
-      url: "{{ pack_download_url }}"
-      checksum: "{{ pack_checksum }}"
-      mode: 'u=rwx,go=rx'
-      dest: /tmp
-    register: downloaded_file
+    - name: Pack  | Download pack
+      ansible.builtin.get_url:
+        url: "{{ pack_download_url }}"
+        checksum: "{{ pack_checksum }}"
+        mode: 'u=rwx,go=rx'
+        dest: /tmp
+      register: downloaded_file
 
-  - name: Pack  | Install pack
-    ansible.builtin.unarchive:
-      src: "{{ downloaded_file.dest }}"
-      dest: "{{ pack_installation_subpath }}"
-      owner: "root"
-      group: "root"
-      mode: "u=rwx,go=rx"
-      remote_src: yes
-    become: true
-    register: pack_bin_path
+    - name: Pack  | Install pack
+      ansible.builtin.unarchive:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ pack_installation_subpath }}"
+        owner: "root"
+        group: "root"
+        mode: "u=rwx,go=rx"
+        remote_src: true
+      become: true
+      register: pack_bin_path
 
-  - name: Pack  | Create pack symlink
-    ansible.builtin.file:
-      src: "{{ pack_installation_subpath }}/pack"
-      dest: /usr/local/bin/pack
-      owner: "root"
-      group: "root"
-      mode: 'u=rwx,go=rx'
-      state: link
-    become: true
+    - name: Pack  | Create pack symlink
+      ansible.builtin.file:
+        src: "{{ pack_installation_subpath }}/pack"
+        dest: /usr/local/bin/pack
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
 
-  - name: Pack  | Clean up temporary files
-    ansible.builtin.file:
-      path: "{{ downloaded_file.dest }}"
-      state: absent
+    - name: Pack  | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent

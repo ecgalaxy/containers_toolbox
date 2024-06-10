@@ -13,43 +13,43 @@
 - name: Kpack CLI | Install kp
   when: not kp_already_installed.stat.exists
   block:
-  - name: Kpack CLI | Create kp installation directory
-    ansible.builtin.file:
-      state: directory
-      owner: root
-      group: root
-      mode: 'u=rwx,go=rx'
-      path: "{{ kp_installation_subpath }}"
-    become: true
+    - name: Kpack CLI | Create kp installation directory
+      ansible.builtin.file:
+        state: directory
+        owner: root
+        group: root
+        mode: 'u=rwx,go=rx'
+        path: "{{ kp_installation_subpath }}"
+      become: true
 
-  - name: Kpack CLI | Download kp
-    ansible.builtin.get_url:
-      url: "{{ kp_download_url }}"
-      checksum: "{{ kp_checksum }}"
-      dest: /tmp
-      mode: "u=rwx,go=rx"
-    register: downloaded_file
+    - name: Kpack CLI | Download kp
+      ansible.builtin.get_url:
+        url: "{{ kp_download_url }}"
+        checksum: "{{ kp_checksum }}"
+        dest: /tmp
+        mode: "u=rwx,go=rx"
+      register: downloaded_file
 
-  - name: Kpack CLI | Install kp
-    ansible.builtin.copy:
-      src: "{{ downloaded_file.dest }}"
-      dest: "{{ kp_installation_subpath }}"
-      remote_src: true
-      mode: 'u=rwx,go=rx'
-    become: true
-    register: kp_bin_path
+    - name: Kpack CLI | Install kp
+      ansible.builtin.copy:
+        src: "{{ downloaded_file.dest }}"
+        dest: "{{ kp_installation_subpath }}"
+        remote_src: true
+        mode: 'u=rwx,go=rx'
+      become: true
+      register: kp_bin_path
 
-  - name: Kpack CLI | Create kp symlink
-    ansible.builtin.file:
-      src: "{{ kp_bin_path.dest }}"
-      dest: /usr/local/bin/kp
-      owner: "root"
-      group: "root"
-      mode: 'u=rwx,go=rx'
-      state: link
-    become: true
+    - name: Kpack CLI | Create kp symlink
+      ansible.builtin.file:
+        src: "{{ kp_bin_path.dest }}"
+        dest: /usr/local/bin/kp
+        owner: "root"
+        group: "root"
+        mode: 'u=rwx,go=rx'
+        state: link
+      become: true
 
-  - name: Kpack CLI | Clean up temporary files
-    ansible.builtin.file:
-      path: "{{ downloaded_file.dest }}"
-      state: absent
+    - name: Kpack CLI | Clean up temporary files
+      ansible.builtin.file:
+        path: "{{ downloaded_file.dest }}"
+        state: absent
