@@ -1,5 +1,9 @@
 # Releases
 
+## 2.0.x
+
+- RHEL 7 support removed.
+
 ## 1.1.x
 
 - [Argo CD CLI](https://argo-cd.readthedocs.io/en/stable/) added.
