@@ -20,9 +20,9 @@ helm_checksum: "sha256:a5844ef2c38ef6ddf3b5a8f7d91e7e0e8ebc39a38bb3fc8013d629c1e
 helm_installation_path: /opt/helm
 helm_version: 3.14.4
 # k9s
-k9s_checksum: "sha256:d62611d9be2c35b782a765e98421500196acbf8be844cd3d9e32d4fa7846da05"
+k9s_checksum: "sha256:33c31bf5feba292b59b8dabe5547cb52ab565521ee5619b52eb4bd4bf226cea3"
 k9s_installation_path: /opt/k9s
-k9s_version: 0.32.4
+k9s_version: 0.32.5
 # kpack CLI
 kp_checksum: "sha256:52f0c927a1350f4f1bb281575ec246f406fb96aa69dc974ed10a2fe52c538158"
 kp_installation_path: /opt/kp
