@@ -18,7 +18,7 @@ List of tools:
 - regctl
 - skopeo (*)
 
-(*) Skopeo installation not yet supported on Amazon Linux 2 and Ubuntu before 22.04 LTS.
+(*) Skopeo installation not yet supported on Amazon Linux and Ubuntu before 22.04 LTS.
 
 Requirements
 ------------
@@ -43,6 +43,20 @@ Example Playbook
         - ecgalaxy.bootstrap
         - ecgalaxy.common_packages
         - ecgalaxy.containers_toolbox
+
+One-liner
+---------
+
+    bash <(curl -s https://code.europa.eu/-/snippets/1/raw/main/ansible-role.sh) ecgalaxy.containers_toolbox
+
+See [ansible-role](https://code.europa.eu/-/snippets/1) for instructions.
+
+Please verify the script integrity first.
+
+Upgrading
+---------
+
+In order to upgrade, reexecute this Ansible role after a new version has been released.
 
 License
 -------

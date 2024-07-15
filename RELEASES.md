@@ -1,5 +1,9 @@
 # Releases
 
+## 2.1.x
+
+- Amazon Linux 2023, RHEL 9 and Ubuntu 24.04 LTS support added.
+
 ## 2.0.x
 
 - RHEL 7 support removed.
