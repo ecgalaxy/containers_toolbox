@@ -39,6 +39,6 @@ kubeseal_force_update: false
 pack_installation_path: /opt/pack
 pack_version: 0.34.2
 # regctl
-regctl_checksum: "sha256:e541327d14c8e6d3a2e4b0dfd76046425a1816879d4f5951042791435dec82e3"
+regctl_checksum: "sha256:6cea9379797e20cecf59e4656a2771928592cc0cec58c967cdcfda4b5a9b38ae"
 regctl_installation_path: /opt/regctl
-regctl_version: 0.6.1
+regctl_version: 0.7.0
