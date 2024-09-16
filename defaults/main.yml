@@ -4,9 +4,9 @@ argocd_checksum: "sha256:6b7551e83e8296a7b0ee265400429e81185fc49f012b537016ded6e
 argocd_installation_path: /opt/argocd
 argocd_version: 2.11.3
 # cosign
-cosign_checksum: "sha256:f669f41176cb1d58bb6a3fdb06e24861540cfdb5a571b4ec5eb2218b0df5d304"
+cosign_checksum: "sha256:cd7636b3586a3bdac2d9c8f3b421ed119edcb20499107887fd929211110e8418"
 cosign_installation_path: /opt/cosign
-cosign_version: 2.2.3
+cosign_version: 2.4.0
 # dive
 dive_checksum: "sha256:20a7966523a0905f950c4fbf26471734420d6788cfffcd4a8c4bc972fded3e96"
 dive_installation_path: /opt/dive
