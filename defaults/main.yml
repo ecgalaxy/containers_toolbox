@@ -1,8 +1,8 @@
 ---
 # argocd
-argocd_checksum: "sha256:28350b3d67b441a1871ea1ef957ffd0a62d4c1827c0ce261aba63809113ab783"
+argocd_checksum: "sha256:a0ee9ef688dbb8561a1bce866c0eb5f3fe872515fbcf575949711c4997b07015"
 argocd_installation_path: /opt/argocd
-argocd_version: 2.12.3
+argocd_version: 2.12.4
 # cosign
 cosign_checksum: "sha256:cd7636b3586a3bdac2d9c8f3b421ed119edcb20499107887fd929211110e8418"
 cosign_installation_path: /opt/cosign
