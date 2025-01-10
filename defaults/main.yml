@@ -29,7 +29,7 @@ kp_installation_path: /opt/kp
 kp_version: 0.13.0
 # kubectl
 kubectl_installation_path: /opt/kubectl
-kubectl_version: 1.30.5
+kubectl_version: 1.31.4
 # kubeseal
 kubeseal_installation_path: /opt/kubeseal
 kubeseal_version: 0.27.3
