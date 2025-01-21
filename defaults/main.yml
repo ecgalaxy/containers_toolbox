@@ -12,9 +12,9 @@ dive_checksum: "sha256:20a7966523a0905f950c4fbf26471734420d6788cfffcd4a8c4bc972f
 dive_installation_path: /opt/dive
 dive_version: 0.12.0
 # eksctl
-eksctl_checksum: "sha256:0579d378b225507ec1257843f57665d8447a15524fd1d8f55cfab09c34bffca0"
+eksctl_checksum: "sha256:078e57ec0f38cada35a1e2d048f79beac32aa99a82c034bdcce3c44388980b17"
 eksctl_installation_path: /opt/eksctl
-eksctl_version: 0.199.0
+eksctl_version: 0.201.0
 # helm
 helm_checksum: "sha256:fc307327959aa38ed8f9f7e66d45492bb022a66c3e5da6063958254b9767d179"
 helm_installation_path: /opt/helm
